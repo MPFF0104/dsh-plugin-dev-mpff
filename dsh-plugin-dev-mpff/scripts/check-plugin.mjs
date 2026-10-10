@@ -360,7 +360,7 @@ function skillFace(skillDir) {
     && dirNames.length === REFERENCE_FILES.length
     && REFERENCE_FILES.every((f) => dirNames.includes(f))
   if (!setEqual) {
-    problem('skill.references-set-mismatch', 'error', 'references/ 条目集合不等于 9 册（或有子目录 / 非 .md）。', {
+    problem('skill.references-set-mismatch', 'error', 'references/ 条目集合不等于 10 册（或有子目录 / 非 .md）。', {
       actual: dirNames,
       extra: badEntries,
     })
@@ -379,7 +379,7 @@ function skillFace(skillDir) {
     references.push({ file, numbered, limit })
   }
   if (referencesTotal > REFERENCES_TOTAL_LIMIT) {
-    problem('skill.references-total-too-long', 'error', `九册合计 ${referencesTotal}，超过 ${REFERENCES_TOTAL_LIMIT}。`, { referencesTotal })
+    problem('skill.references-total-too-long', 'error', `十册合计 ${referencesTotal}，超过 ${REFERENCES_TOTAL_LIMIT}。`, { referencesTotal })
   }
 
   // S3 引用存在

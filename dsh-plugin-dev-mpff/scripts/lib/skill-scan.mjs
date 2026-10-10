@@ -13,6 +13,7 @@ export const REFERENCE_FILES = [
   'release-and-distribution.md',
   'failure-modes.md',
   'drift-recheck.md',
+  'skill-shipping.md',
 ]
 
 /** 每册的 numbered 上限（单一真源）。 */
@@ -26,9 +27,10 @@ export const REFERENCE_LIMITS = {
   'release-and-distribution.md': 7000,
   'failure-modes.md': 6000,
   'drift-recheck.md': 5000,
+  'skill-shipping.md': 7000,
 }
 
-/** 入口正文（渲染后）上限与九册 numbered 合计上限。 */
+/** 入口正文（渲染后）上限与十册 numbered 合计上限。 */
 export const ENTRY_LIMIT = 7000
 export const ENTRY_HARD_LIMIT = 8192
 export const REFERENCES_TOTAL_LIMIT = 59000
@@ -140,7 +142,7 @@ export function shellReadHits(text) {
   return [...text.matchAll(/`(cat|cp|ls) /gu)].map((m) => m[0])
 }
 
-/** markdown 链接（引用一律反引号裸路径，markdown 链接不被任何门禁校验）。 */
+/** markdown 链接（引用一律反引号裸路径；skill 面把它判为 error，code 见 check-plugin.mjs 的 skill.markdown-link）。 */
 export function markdownLinkHits(text) {
   return [...text.matchAll(/\]\(/gu)].map((m) => m[0])
 }

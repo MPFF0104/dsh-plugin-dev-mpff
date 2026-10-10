@@ -14,7 +14,7 @@ description: 'Build, modify, publish, or debug a dsh (DeepSeek Harness) plugin: 
 3. 发现逻辑只有一处实现：CLI 候选链住在 `scripts/dsh-env.mjs`，其余位置只调用它。—— 理由：单一真源。
 4. 产物一律落 `--work-root`（默认 OS 临时目录）；skill 目录是只读资源。—— 理由：Desktop 下 skill 目录可能落在 `app.asar` 内，只有宿主进程自己的文件读取能打开它。
 5. 断言失败就 `FAIL` 并给出 code。—— 理由：失败信号表见 `references/verification-loop.md`。
-6. 指针一律写反引号裸路径：`references/` 或 `templates/` 前缀加文件名。—— 理由：官方门禁与 `scripts/check-plugin.mjs` 只认这种形态，markdown 链接不被校验。
+6. 指针一律写反引号裸路径：`references/`、`templates/`、`examples/`、`scripts/` 四类前缀加路径。—— 理由：官方门禁与 `scripts/check-plugin.mjs` 只认这种形态；markdown 链接在 skill 面是 error（`skill.markdown-link`）。
 7. 版本号、bundle 列表、包数只写读取命令。—— 理由：易变状态，读法归各册。
 
 ## 先看这里：任务 → 文件
@@ -28,6 +28,7 @@ description: 'Build, modify, publish, or debug a dsh (DeepSeek Harness) plugin: 
 | 写前端 / UI 半边（`dsh.client`、`client.js`） | `references/frontend-plugin.md` |
 | 证明它真的生效了 | `references/verification-loop.md` |
 | 发到 npm / 说清兼容性 | `references/release-and-distribution.md` |
+| 把 skill 随包发出去 / 让包里的 skill 被发现 | `references/skill-shipping.md` |
 | 它没生效，或静默什么都不做 | `references/failure-modes.md` |
 | 升级 dsh 之后重新核对 | `references/drift-recheck.md` |
 | 复制一个能跑的起点 | `templates/host-only/` 或 `templates/frontend/` |

@@ -15,6 +15,7 @@
 - **发布与兼容性声明** —— 发到 npm 时要说清的兼容性面
 - **排查静默失效** —— 插件装上了却什么都不做，从哪开始查
 - **升级后重新核对** —— dsh 升级之后，哪些事实必须重新确认
+- **把 skill 随包发出去** —— 让包里的 skill 真的被宿主发现，而不是装上了却静默不可见
 
 ## 边界在哪（不覆盖什么）
 
@@ -32,7 +33,7 @@
 - **触发面**（`description` 里的中文触发词）：dsh 插件开发、新建插件、插件包骨架、bundle patch、cordis.patch.yml、cordis 组合、宿主插件、client manifest、前端/UI 插件、扩展点选择、本地安装与验证、npm 发布、插件静默失效排查
 - **排除面**（`description` 的 `Do not use for …` 一段）：使用或配置一个已装插件、改 shipped preset、dsh 宿主本身开发
 
-`description` 是触发词与排除面的唯一真源，本节只是它的索引。被触发之后，`SKILL.md` 是唯一入口：路由表与 5 步流程在那里，其余内容（9 册分册、两套模板、闭环夹具、脚本）按需加载。
+`description` 是触发词与排除面的唯一真源，本节只是它的索引。被触发之后，`SKILL.md` 是唯一入口：路由表与 5 步流程在那里，其余内容（10 册分册、两套模板、闭环夹具、脚本）按需加载。
 
 ## 目录结构
 
@@ -55,7 +56,8 @@ dsh-plugin-dev-mpff/
 │   ├── verification-loop.md
 │   ├── release-and-distribution.md
 │   ├── failure-modes.md
-│   └── drift-recheck.md
+│   ├── drift-recheck.md
+│   └── skill-shipping.md
 ├── templates/
 │   ├── host-only/
 │   │   ├── package.json
