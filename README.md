@@ -38,6 +38,8 @@
 
 取用 = 把 `dsh-plugin-dev-mpff/` 这一层整个拿走（连同 `references/`、`templates/`、`examples/`、`scripts/`）；落点与优先级由你的宿主的 skill 发现规则决定。
 
+落点与优先级去你宿主自带的 skill 发现文档里读：dsh 的 skill 提供方包（`@deepseek-ai/dsh-skill-filesystem`）文档中「根目录与优先级」一节，列着它会扫描的全部根与两种形态。
+
 ```text
 README.md
 LICENSE
