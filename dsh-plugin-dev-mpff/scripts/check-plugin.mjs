@@ -39,7 +39,7 @@ import {
 } from './lib/skill-scan.mjs'
 
 const TOOL = 'check-plugin'
-const CONTRACT_VERSION = 1
+const CONTRACT_VERSION = 2
 const SEVERITY_RANK = { info: 0, warn: 1, error: 2 }
 
 const problems = []
@@ -329,7 +329,7 @@ function skillFace(skillDir) {
   const fm = frontmatterOf(raw)
   if (fm.bom) problem('skill.bom', 'error', 'SKILL.md 以 U+FEFF 起头。', {})
   if (fm.firstLine !== '---') problem('skill.first-line-not-frontmatter', 'error', 'SKILL.md 第 1 行不是逐字 ---', { actual: fm.firstLine })
-  if (fm.crlf) problem('skill.crlf', 'error', 'SKILL.md 含 CRLF。', {})
+  if (fm.crlf) problem('skill.crlf', 'warn', 'SKILL.md 含 CRLF（宿主 skill 发现不受影响，只提示行尾规范）。', {})
   const keySet = [...fm.keys].sort().join(',')
   if (keySet !== 'description,name') problem('skill.frontmatter-keys', 'error', 'frontmatter 键集合必须恰好是 name + description。', { actual: fm.keys })
   if (!fm.descriptionQuoted) problem('skill.description-unquoted', 'error', 'description 值必须被单引号整体包裹。', {})

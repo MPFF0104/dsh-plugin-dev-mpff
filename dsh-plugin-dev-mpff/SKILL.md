@@ -38,7 +38,7 @@ description: 'Build, modify, publish, or debug a dsh (DeepSeek Harness) plugin: 
 
 1. **定位环境** —— 判据：`node "<skill-directory>/scripts/dsh-env.mjs"` 输出单份 JSON 且 `ok: true`，`<cli>` 与 `<dsh-home>` 非空。
 2. **定形态** —— 判据：写下一行决定（纯宿主 / 宿主 + 前端），并给出所选扩展点的就地校验命令与它的输出。
-3. **建包** —— 判据：`node "<skill-directory>/scripts/check-plugin.mjs" <包目录>` 输出 `ok: true`。
+3. **建包** —— 判据：`node "<skill-directory>/scripts/check-plugin.mjs" --plugin-dir <包目录>` 输出 `ok: true`。
 4. **证明生效** —— 判据：`node "<skill-directory>/scripts/verify-e2e.mjs"` 退出码 0，且它报告了「装上了 / mount 了 / 卸干净了」三条。
 5. **发布** —— 判据：`references/release-and-distribution.md` 的三条硬规则与 peer 闸门逐条核过，破坏性变更已写进公告。
 

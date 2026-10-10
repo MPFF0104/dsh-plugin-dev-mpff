@@ -59,7 +59,7 @@ node -e "JSON.parse(require('node:fs').readFileSync('<包目录>/package.json','
 第三连是「patch 指向的文件存在」：读 `dsh.bundle.patch` 的值，在包根下逐个核对文件在。三连过了再接一条形态门：
 
 ```sh
-node "<skill-directory>/scripts/check-plugin.mjs" <包目录>
+node "<skill-directory>/scripts/check-plugin.mjs" --plugin-dir <包目录>
 ```
 
 判据是 `ok: true` 且 `problems[]` 里 `severity === 'error'` 的条数为 0。
@@ -71,7 +71,7 @@ node "<skill-directory>/scripts/check-plugin.mjs" <包目录>
 ## 边界
 
 - 宿主半边最小文件树的完整形态由本规格的 `templates/host-only/` 补上——上游只有参考形态，没有一份「最小文件树」成文。
-- `bundle.patch` 与行 `id` 的官方推荐写法**无证据**，上面那张表给的是**本规格决定**，不是上游规则。自己确认的办法：`node "<skill-directory>/scripts/check-plugin.mjs" <包目录>` 会把包名、patch 路径与行 `id` 一起报出来，再对照宿主 `node "<cli>" --profile <profile> --dump-config` 的层头与行。
+- `bundle.patch` 与行 `id` 的官方推荐写法**无证据**，上面那张表给的是**本规格决定**，不是上游规则。自己确认的办法：`node "<skill-directory>/scripts/check-plugin.mjs" --plugin-dir <包目录>` 会把包名、patch 路径与行 `id` 一起报出来，再对照宿主 `node "<cli>" --profile <profile> --dump-config` 的层头与行。
 
 ## 相关
 

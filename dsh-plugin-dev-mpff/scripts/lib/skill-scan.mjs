@@ -65,10 +65,21 @@ export function shellLength(name, absPath) {
   return SHELL_BASE + codePointLength(name) + codePointLength(absPath)
 }
 
-/** 官方 body() 同形：从第 4 个字符后找第一个 `\n---\n`。 */
+/**
+ * frontmatter 闭分隔符定位（CRLF 容忍）。
+ * 返回 `{ blockEnd, bodyStart }`：`blockEnd` = 闭分隔符起始（与旧的 `indexOf('\n---\n', 4)` 同值），
+ * `bodyStart` = 闭分隔符之后（正文起点）。找不到时两者皆为 -1。
+ */
+export function frontmatterBounds(raw) {
+  const m = /\r?\n---\r?\n/u.exec(raw.slice(4))
+  if (m === null) return { blockEnd: -1, bodyStart: -1 }
+  return { blockEnd: 4 + m.index, bodyStart: 4 + m.index + m[0].length }
+}
+
+/** 官方 body() 同形：从第 4 个字符后找第一个闭分隔符。 */
 export function bodyOf(raw) {
-  const at = raw.indexOf('\n---\n', 4)
-  return at === -1 ? '' : raw.slice(at + '\n---\n'.length)
+  const { bodyStart } = frontmatterBounds(raw)
+  return bodyStart === -1 ? '' : raw.slice(bodyStart)
 }
 
 /**
@@ -82,8 +93,8 @@ export function numberedLines(text) {
 /** 浅扫描 frontmatter（只认两键形态，不引 YAML 解析器）。 */
 export function frontmatterOf(raw) {
   const firstLine = raw.slice(0, raw.indexOf('\n')).replace(/\r$/u, '')
-  const end = raw.indexOf('\n---\n', 4)
-  const block = end === -1 ? '' : raw.slice(4, end)
+  const { blockEnd } = frontmatterBounds(raw)
+  const block = blockEnd === -1 ? '' : raw.slice(4, blockEnd)
   const keys = []
   const values = {}
   for (const line of block.split(/\r?\n/)) {
