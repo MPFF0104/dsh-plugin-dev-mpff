@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Hello Plugin",
+    "description": "Minimal third-party dsh plugin used as the end-to-end fixture."
+  }
+}

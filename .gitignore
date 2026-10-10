@@ -1,0 +1,10 @@
+# 白名单：默认忽略一切，只放行成品面
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/dsh-plugin-dev-mpff/
+
+# 当前工作树里的本地过程文件（保持忽略，未来出现同类文件也自动忽略）
+/AGENTS.md
+/docs/

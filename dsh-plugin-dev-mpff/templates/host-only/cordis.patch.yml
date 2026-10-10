@@ -1,0 +1,3 @@
+- insert:
+    - id: my-plugin
+      name: '@local/my-plugin'

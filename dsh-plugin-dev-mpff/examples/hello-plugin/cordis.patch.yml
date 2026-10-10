@@ -1,0 +1,8 @@
+- insert:
+    - id: hello-plugin
+      name: dsh-hello-plugin
+      config:
+        greeting: hello
+        nested:
+          x: 1
+          y: 2
