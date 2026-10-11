@@ -102,6 +102,7 @@ dsh: warning: <包名> declares no dsh.bundle — installed as a plain dependenc
 - `probe-skill`: <该 skill 的 description>
 </available_skills>
 ```
+这条消息在**首个请求前**就写进会话日志（`<一次性 DSH_HOME>/sessions/…`），**没有模型凭据也能拿到**：逐帧解压后搜它。
 2. **被加载** —— `skill` 工具返回的 `<skill_content>` 块。headless 会话加 `--json`，事件流里能看到这一对：
 
 ```text
@@ -176,5 +177,5 @@ node "<skill-directory>/scripts/dsh-env.mjs"
 ## 参考
 
 - 包形态与 patch 层序：`references/package-and-assembly.md`、`references/build-a-package.md`
-- 一次性 profile 与失败信号表：`references/verification-loop.md`、`references/failure-modes.md`
+- 一次性 profile 与失败信号表：`references/verification-loop.md`（**无凭据时**的机器条件见其「边界」节）、`references/failure-modes.md`
 - 升级后重新核对：`references/drift-recheck.md`
