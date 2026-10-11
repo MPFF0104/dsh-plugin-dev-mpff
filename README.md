@@ -22,7 +22,7 @@
 - 不覆盖「使用或配置一个已装插件」—— 那是使用者的事，不是作者的事
 - 不覆盖「改 shipped preset」—— 官方发行版自带的组合不在第三方扩展点里
 - 不覆盖「dsh 宿主本身开发」—— 宿主主循环与官方自带插件不在范围内
-- 不覆盖「安装或放置这个 skill 本身」—— 落点与优先级由宿主自己的 skill 发现规则决定，本仓库不写落点
+- 不覆盖「安装或放置这个 skill 本身」—— 落点与优先级由宿主自己的 skill 发现规则决定，本仓库不定义落点，只给一个照做用的示例
 - 不覆盖「版本与变更历史」—— 本仓只有一处版本面：GitHub Releases 的 tag（不写当前版本号、不列变更历史，版本与变更都从那里读）
 - 不覆盖「副本对齐」—— 取用者手上的目录束与仓库之间没有可比版本面（按 clone 取用的自带 `refs/tags`，是已知例外）
 
@@ -39,7 +39,9 @@
 
 取用 = 把 `dsh-plugin-dev-mpff/` 这一层整个拿走（连同 `references/`、`templates/`、`examples/`、`scripts/`）；落点与优先级由你的宿主的 skill 发现规则决定。
 
-落点与优先级去你宿主自带的 skill 发现文档里读：dsh 的 skill 提供方包（`@deepseek-ai/dsh-skill-filesystem`）文档中「根目录与优先级」一节，列着它会扫描的全部根与两种形态。
+落点 = 把 `dsh-plugin-dev-mpff/` 这一层**整层**放进任一被扫描根的顶层，即 `<root>/dsh-plugin-dev-mpff/SKILL.md`。最省事的是**项目级根** `<projectRoot>/.dsh/skills/`（= 你的会话工作区向上最近含 `.git` 的祖先，没有就是会话目录本身；**不是**你刚 clone 下来的这个仓），不想动任何既有 profile 就用它；跨项目常驻则用**用户级根** `<dshHome>/skills/`。根按优先级排序，同名时高优先者胜（宿主文档里叫 rank，数字随宿主版本可能变，以宿主文档为准）。
+
+完整根表与优先级（还有平铺形态 `<name>.md`）见你宿主自带的 skill 发现文档：dsh 的 skill 提供方包（`@deepseek-ai/dsh-skill-filesystem`）的「根目录与优先级」一节。
 
 ```text
 README.md
