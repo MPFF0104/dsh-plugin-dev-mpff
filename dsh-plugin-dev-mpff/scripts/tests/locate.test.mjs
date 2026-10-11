@@ -1,7 +1,7 @@
 // 定位库的单测：候选顺序 / 「存在但不可用」/ 注册表解析 / 显式路径不回退 / Electron 判定。
 //
 // 运行命令（**显式文件列表**）：
-//   node --test "<skill-directory>/scripts/tests/paths.test.mjs" "<skill-directory>/scripts/tests/locate.test.mjs"
+//   node --test "<skill-directory>/scripts/tests/paths.test.mjs" "<skill-directory>/scripts/tests/locate.test.mjs" "<skill-directory>/scripts/tests/skill-scan.test.mjs"
 //
 // 纪律：一律用**假 io**（不改 process 全局）；只有「存在但不可用」那一路用真子进程。
 

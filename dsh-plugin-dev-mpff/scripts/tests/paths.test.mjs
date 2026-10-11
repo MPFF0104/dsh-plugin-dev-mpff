@@ -1,7 +1,7 @@
 // 脚本自身的单测（纯函数面）：每个反引号裸路径引用都存在 + 防失效守卫 + 目录集合相等。
 //
 // 运行命令（**显式文件列表**；目录参数不可用、glob 零命中会静默通过）：
-//   node --test "<skill-directory>/scripts/tests/paths.test.mjs" "<skill-directory>/scripts/tests/locate.test.mjs"
+//   node --test "<skill-directory>/scripts/tests/paths.test.mjs" "<skill-directory>/scripts/tests/locate.test.mjs" "<skill-directory>/scripts/tests/skill-scan.test.mjs"
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -51,5 +51,5 @@ test('scripts/tests/ 的条目集合相等（多一个 / 少一个都失败）',
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
     .sort()
-  assert.deepEqual(actual, ['locate.test.mjs', 'paths.test.mjs'])
+  assert.deepEqual(actual, ['locate.test.mjs', 'paths.test.mjs', 'skill-scan.test.mjs'], '新增 / 删除测试文件时，这条守卫要同步改')
 })

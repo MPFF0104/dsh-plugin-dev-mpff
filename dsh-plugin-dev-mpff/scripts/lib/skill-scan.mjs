@@ -158,14 +158,24 @@ const PARENT_TRAVERSAL = ['\\.', '\\.', '/'].join('')
 const USERS_DIR = ['', 'Users', ''].join('/')
 const DSH_HOME_TILDE = ['~', '.dsh'].join('/')
 const DRIVE_PATH = '(?<![A-Za-z0-9])[A-Za-z]:[\\\\/]'
+// 绝对路径前缀（`/home` `/root` `/opt` `/srv` `/mnt`，见 #35）。
+// 前导斜杠必须**吃进模式**：若只匹配 `home/`，`(?<![/:])` 会看见前面的 `/` 而自杀，整类失效。
+// 守卫 `(?<![A-Za-z0-9._:-])` 防 URL 形态误判（`https://host/home/x`、`127.0.0.1/mnt/x`）。
+// 词表纪律同下：拼接构造，别写字面（自扫面含 scripts/**）。
+const ABS_PREFIX = `(?<![A-Za-z0-9._:-])/(?:${['home', 'root', 'opt', 'srv', 'mnt'].join('|')})/`
+const ENV_HOME = ['\\', '$', 'HOME'].join('')
+const ENV_USERPROFILE = ['%USER', 'PROFILE', '%'].join('')
 const ASAR_ARCHIVE = ['app', '.asar'].join('')
 const GITHUB_SLUG = new RegExp(`${['github', '\\.com/'].join('')}([\\w.-]+)\\/([\\w.-]+)`, 'gu')
 const ALLOWED_REPO_SLUG = ['deepseek-ai', 'deepseek-harness'].join('/')
 
 const MACHINE_PATTERNS = [
   DRIVE_PATH,
+  ABS_PREFIX,
   USERS_DIR,
   DSH_HOME_TILDE,
+  ENV_HOME,
+  ENV_USERPROFILE,
   SPEC_READ,
   TEMP_VAR,
   LOCALAPPDATA_VAR,

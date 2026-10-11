@@ -93,5 +93,6 @@ dsh-plugin-dev-mpff/
     │   └── skill-scan.mjs
     └── tests/
         ├── paths.test.mjs
-        └── locate.test.mjs
+        ├── locate.test.mjs
+        └── skill-scan.test.mjs
 ```
